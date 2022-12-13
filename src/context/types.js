@@ -1,0 +1,3 @@
+// publications
+export const LOAD_PUBLICATIONS = 'LOAD_PUBLICATIONS';
+export const PUBLICATIONS_ERROR = 'PUBLICATIONS_ERROR';
