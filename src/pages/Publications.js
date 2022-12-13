@@ -6,37 +6,27 @@ export const Publications = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Full Title',
-        Footer: 'Full Title',
-        columns: [
-          {
-            Header: 'Title',
-            Footer: 'Title',
-            accessor: 'title', // accessor is the "key" in the data
-          },
-          {
-            Header: 'Source Title',
-            Footer: 'Source Title',
-            accessor: 'sourceTitle', // accessor is the "key" in the data
-          },
-        ],
+        Header: 'Title',
+        Footer: 'Title',
+        accessor: 'title', // accessor is the "key" in the data
       },
       {
-        Header: 'AUTHOR',
-        Footer: 'AUTHOR',
-        columns: [
-          {
-            Header: 'First Name',
-            Footer: 'First Name',
-            accessor: 'firstName', // accessor is the "key" in the data
-          },
-          {
-            Header: 'Last Name',
-            Footer: 'Last Name',
-            accessor: 'lastName', // accessor is the "key" in the data
-          },
-        ],
+        Header: 'Source Title',
+        Footer: 'Source Title',
+        accessor: 'sourceTitle', // accessor is the "key" in the data
       },
+
+      {
+        Header: 'First Name',
+        Footer: 'First Name',
+        accessor: 'firstName', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Last Name',
+        Footer: 'Last Name',
+        accessor: 'lastName', // accessor is the "key" in the data
+      },
+
       {
         Header: 'Document Type',
         Footer: 'Document Type',
