@@ -9,6 +9,9 @@ export const Publications = () => {
         Header: 'Title',
         Footer: 'Title',
         accessor: 'title', // accessor is the "key" in the data
+        Cell: ({ value }) => {
+          return value === '' ? 'No Title' : value;
+        },
       },
       {
         Header: 'Source Title',
