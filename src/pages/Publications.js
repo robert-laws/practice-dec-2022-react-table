@@ -12,6 +12,7 @@ export const Publications = () => {
         Cell: ({ value }) => {
           return value === '' ? 'No Title' : value;
         },
+        disableFilters: true,
       },
       {
         Header: 'Source Title',
