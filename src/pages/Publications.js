@@ -14,6 +14,14 @@ export const Publications = () => {
         accessor: 'sourceTitle', // accessor is the "key" in the data
       },
       {
+        Header: 'First Name',
+        accessor: 'firstName', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Last Name',
+        accessor: 'lastName', // accessor is the "key" in the data
+      },
+      {
         Header: 'Document Type',
         accessor: 'documentType', // accessor is the "key" in the data
       },
