@@ -2,76 +2,34 @@ import { useContext, useEffect, useMemo } from 'react';
 import PublicationsContext from '../context/publications/publicationsContext';
 import { Table } from '../components/Table';
 import { MultipleFilter } from '../components/MultipleFilter';
+import { SelectColumnFilter } from '../components/SelectColumnFilter';
 
 export const Publications = () => {
-  function setFilteredParams(filterArr, val) {
-    if (filterArr.includes(val)) {
-      filterArr = filterArr.filter((n) => {
-        return n !== val;
-      });
-    } else filterArr.push(val);
-
-    if (filterArr.length === 0) filterArr = undefined;
-    return filterArr;
-  }
-
-  function SelectColumnFilter({
-    column: { filterValue = [], setFilter, preFilteredRows, id },
-  }) {
-    const options = useMemo(() => {
-      const options = new Set();
-      preFilteredRows.forEach((row) => {
-        options.add(row.values[id].trim());
-      });
-      return [...options.values()].sort();
-    }, [id, preFilteredRows]);
-
-    return (
-      <>
-        <div className='block'>
-          <span className='block capitalize mb-4'>{id}</span>
-          {options.map((option, i) => {
-            return (
-              <div key={i}>
-                <div className='flex items-center'>
-                  <input
-                    type='checkbox'
-                    className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
-                    id={option}
-                    name={option}
-                    value={option}
-                    onChange={(e) => {
-                      setFilter(setFilteredParams(filterValue, e.target.value));
-                    }}
-                  ></input>
-                  <label
-                    htmlFor={option}
-                    className='ml-1.5 font-medium text-gray-700'
-                  >
-                    {option === '' ? 'No Language Listed' : option}
-                  </label>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  }
-
   const columns = useMemo(
     () => [
+      // {
+      //   Header: 'Title',
+      //   accessor: 'title', // accessor is the "key" in the data
+      //   Cell: ({ value }) => {
+      //     return value === '' ? 'No Title' : value;
+      //   },
+      //   disableFilters: true,
+      // },
+      // {
+      //   Header: 'Source Title',
+      //   accessor: 'sourceTitle', // accessor is the "key" in the data
+      // },
       {
-        Header: 'Title',
-        accessor: 'title', // accessor is the "key" in the data
-        Cell: ({ value }) => {
-          return value === '' ? 'No Title' : value;
+        Header: 'Publication Title',
+        Cell: ({ row }) => {
+          let fullTitle = '';
+          if (row.original.title === '') {
+            fullTitle = row.original.sourceTitle;
+          } else {
+            fullTitle = row.original.title;
+          }
+          return fullTitle;
         },
-        disableFilters: true,
-      },
-      {
-        Header: 'Source Title',
-        accessor: 'sourceTitle', // accessor is the "key" in the data
       },
       {
         Header: 'Name',
@@ -90,20 +48,20 @@ export const Publications = () => {
       {
         Header: 'Language',
         accessor: 'language', // accessor is the "key" in the data
-        Filter: SelectColumnFilter,
         filter: MultipleFilter,
+        Filter: SelectColumnFilter,
       },
       {
         Header: 'Document Type',
         accessor: 'documentType', // accessor is the "key" in the data
-        Filter: SelectColumnFilter,
         filter: MultipleFilter,
+        Filter: SelectColumnFilter,
       },
       {
         Header: 'Year',
         accessor: 'year',
-        Filter: SelectColumnFilter,
         filter: MultipleFilter,
+        Filter: SelectColumnFilter,
       },
     ],
     []

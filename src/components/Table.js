@@ -32,7 +32,9 @@ export const Table = ({ columns, data }) => {
     gotoPage,
     pageCount,
     setPageSize,
+    rows,
     state,
+    setFilter,
     setGlobalFilter,
   } = useTable(
     {
@@ -50,9 +52,16 @@ export const Table = ({ columns, data }) => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   return (
-    <>
+    <div style={{ position: 'relative' }}>
+      <div>Number of Results: {rows.length}</div>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-      <table {...getTableProps()}>
+      <input
+        type='text'
+        className='form-field'
+        onChange={(e) => setFilter('sourceTitle', e.target.value)}
+        placeholder='Search Source Title'
+      />
+      <table style={{ marginLeft: '300px' }} {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -91,7 +100,7 @@ export const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <div>
+      <div style={{ marginLeft: '300px' }}>
         <span>
           Page{' '}
           <strong>
@@ -135,6 +144,6 @@ export const Table = ({ columns, data }) => {
           {'>>'}
         </button>
       </div>
-    </>
+    </div>
   );
 };

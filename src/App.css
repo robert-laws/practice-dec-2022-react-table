@@ -1,3 +1,18 @@
 .App {
   text-align: center;
 }
+
+.checkboxFilters {
+  text-align: left;
+  position: absolute;
+  left: 0;
+}
+#checkboxes-language {
+  margin-top: 880px;
+}
+#checkboxes-documentType {
+  margin-top: 400px;
+}
+#checkboxes-year {
+  top: 500;
+}
