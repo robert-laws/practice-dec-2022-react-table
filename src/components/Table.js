@@ -1,5 +1,11 @@
 import { useMemo } from 'react';
-import { useTable, useSortBy, useFilters, useGlobalFilter } from 'react-table';
+import {
+  useTable,
+  useSortBy,
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+} from 'react-table';
 import { GlobalFilter } from './GlobalFilter';
 import { DefaultColumnFilter } from './DefaultColumnFilter';
 
@@ -16,8 +22,16 @@ export const Table = ({ columns, data }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
+    nextPage,
+    previousPage,
     prepareRow,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
     state,
     setGlobalFilter,
   } = useTable(
@@ -25,13 +39,15 @@ export const Table = ({ columns, data }) => {
       columns,
       data,
       defaultColumn,
+      initialState: { pageIndex: 0 },
     },
     useFilters,
     useGlobalFilter,
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
 
   return (
     <>
@@ -43,12 +59,6 @@ export const Table = ({ columns, data }) => {
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>
                   <div>
-                    {column.canGroupBy ? (
-                      // If the column can be grouped, let's add a toggle
-                      <span {...column.getGroupByToggleProps()}>
-                        {column.isGrouped ? '🛑 ' : '👊 '}
-                      </span>
-                    ) : null}
                     <span {...column.getSortByToggleProps()}>
                       {column.render('Header')}
                       {/* Add a sort direction indicator */}
@@ -67,7 +77,7 @@ export const Table = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {page.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -81,6 +91,50 @@ export const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
+      <div>
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <span>
+          | Go to page:{' '}
+          <input
+            type='number'
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const pageNumber = e.target.value
+                ? Number(e.target.value) - 1
+                : 0;
+              gotoPage(pageNumber);
+            }}
+            style={{ width: '50px' }}
+          />
+        </span>
+        <select
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          Previous
+        </button>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          Next
+        </button>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>
+      </div>
     </>
   );
 };
