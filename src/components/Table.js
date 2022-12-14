@@ -34,7 +34,6 @@ export const Table = ({ columns, data }) => {
     setPageSize,
     rows,
     state,
-    setFilter,
     setGlobalFilter,
   } = useTable(
     {
@@ -55,12 +54,12 @@ export const Table = ({ columns, data }) => {
     <div style={{ position: 'relative' }}>
       <div>Number of Results: {rows.length}</div>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-      <input
+      {/* <input
         type='text'
         className='form-field'
         onChange={(e) => setFilter('sourceTitle', e.target.value)}
         placeholder='Search Source Title'
-      />
+      /> */}
       <table style={{ marginLeft: '300px' }} {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (

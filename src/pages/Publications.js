@@ -8,18 +8,18 @@ import { SelectColumnFilter } from '../components/SelectColumnFilter';
 export const Publications = () => {
   const columns = useMemo(
     () => [
-      // {
-      //   Header: 'Title',
-      //   accessor: 'title', // accessor is the "key" in the data
-      //   Cell: ({ value }) => {
-      //     return value === '' ? 'No Title' : value;
-      //   },
-      //   disableFilters: true,
-      // },
-      // {
-      //   Header: 'Source Title',
-      //   accessor: 'sourceTitle', // accessor is the "key" in the data
-      // },
+      {
+        Header: 'Title',
+        accessor: 'title', // accessor is the "key" in the data
+        Cell: ({ value }) => {
+          return value === '' ? 'No Title' : value;
+        },
+        disableFilters: true,
+      },
+      {
+        Header: 'Source Title',
+        accessor: 'sourceTitle', // accessor is the "key" in the data
+      },
       {
         Header: 'Publication Title',
         Cell: ({ row }) => {
