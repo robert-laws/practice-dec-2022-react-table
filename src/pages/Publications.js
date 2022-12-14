@@ -1,4 +1,5 @@
 import { useContext, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import PublicationsContext from '../context/publications/publicationsContext';
 import { Table } from '../components/Table';
 import { MultipleFilter } from '../components/MultipleFilter';
@@ -28,7 +29,9 @@ export const Publications = () => {
           } else {
             fullTitle = row.original.title;
           }
-          return fullTitle;
+          return (
+            <Link to={`/publication/${row.original.id}`}>{fullTitle}</Link>
+          );
         },
       },
       {
