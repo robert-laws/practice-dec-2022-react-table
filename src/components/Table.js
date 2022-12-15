@@ -60,46 +60,68 @@ export const Table = ({ columns, data }) => {
         onChange={(e) => setFilter('sourceTitle', e.target.value)}
         placeholder='Search Source Title'
       /> */}
-      <table style={{ marginLeft: '300px' }} {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
-                  <div>
-                    <span {...column.getSortByToggleProps()}>
-                      {column.render('Header')}
-                      {/* Add a sort direction indicator */}
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
-                  </div>
-                  {/* Render the columns filter UI */}
-                  <div>{column.canFilter ? column.render('Filter') : null}</div>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  );
-                })}
+      <div
+        style={{ marginLeft: '250px' }}
+        className='-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg'
+      >
+        <table
+          className='min-w-full divide-y divide-gray-300'
+          {...getTableProps()}
+        >
+          <thead className='bg-gray-50'>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th
+                    scope='col'
+                    className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
+                    {...column.getHeaderProps()}
+                  >
+                    <div>
+                      <span {...column.getSortByToggleProps()}>
+                        {column.render('Header')}
+                        {/* Add a sort direction indicator */}
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? ' 🔽'
+                            : ' 🔼'
+                          : ''}
+                      </span>
+                    </div>
+                    {/* Render the columns filter UI */}
+                    <div>
+                      {column.canFilter ? column.render('Filter') : null}
+                    </div>
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div style={{ marginLeft: '300px' }}>
+            ))}
+          </thead>
+          <tbody
+            className='divide-y divide-gray-200 bg-white'
+            {...getTableBodyProps()}
+          >
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ marginLeft: '250px' }}>
         <span>
           Page{' '}
           <strong>

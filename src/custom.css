@@ -1,0 +1,13 @@
+.checkboxFilters {
+  text-align: left;
+  position: absolute;
+  left: 0;
+}
+#checkboxes-language {
+  margin-top: 1090px;
+}
+#checkboxes-documentType {
+  margin-top: 480px;
+}
+#checkboxes-year {
+}
