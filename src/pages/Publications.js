@@ -30,7 +30,12 @@ export const Publications = () => {
             fullTitle = row.original.title;
           }
           return (
-            <Link to={`/publication/${row.original.id}`}>{fullTitle}</Link>
+            <Link
+              className='text-blue-600 hover:text-blue-500'
+              to={`/publication/${row.original.id}`}
+            >
+              {fullTitle}
+            </Link>
           );
         },
       },
@@ -80,7 +85,7 @@ export const Publications = () => {
   }, [publications, loadPublications]);
 
   return (
-    <div>
+    <div class='container mx-auto px-4'>
       {isLoading && <p>Loading...</p>}
       {publicationsError && <p>{publicationsError}</p>}
       {/* {publications.map((publication, index) => (
