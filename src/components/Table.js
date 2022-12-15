@@ -67,7 +67,7 @@ export const Table = ({ columns, data }) => {
         className='-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg'
       >
         <table
-          className='min-w-full divide-y divide-gray-300'
+          className='min-w-full divide-y divide-gray-300 table-fixed'
           {...getTableProps()}
         >
           <thead className='bg-gray-50'>
@@ -110,6 +110,9 @@ export const Table = ({ columns, data }) => {
                   {row.cells.map((cell) => {
                     return (
                       <td
+                        style={{
+                          wordWrap: 'break-word',
+                        }}
                         className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'
                         {...cell.getCellProps()}
                       >
