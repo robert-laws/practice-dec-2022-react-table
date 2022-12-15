@@ -51,8 +51,10 @@ export const Table = ({ columns, data }) => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   return (
-    <div style={{ position: 'relative' }}>
-      <div>Number of Results: {rows.length}</div>
+    <div className='mt-4' style={{ position: 'relative' }}>
+      <div>
+        Number of Results: <strong>{rows.length}</strong>
+      </div>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       {/* <input
         type='text'

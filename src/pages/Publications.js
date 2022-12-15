@@ -8,20 +8,9 @@ import { SelectColumnFilter } from '../components/SelectColumnFilter';
 export const Publications = () => {
   const columns = useMemo(
     () => [
-      // {
-      //   Header: 'Title',
-      //   accessor: 'title', // accessor is the "key" in the data
-      //   Cell: ({ value }) => {
-      //     return value === '' ? 'No Title' : value;
-      //   },
-      //   disableFilters: true,
-      // },
-      // {
-      //   Header: 'Source Title',
-      //   accessor: 'sourceTitle', // accessor is the "key" in the data
-      // },
       {
-        Header: 'Publication Title',
+        Header: 'Title',
+        accessor: 'title', // accessor is the "key" in the data
         Cell: ({ row }) => {
           let fullTitle = '';
           if (row.original.title === '') {
@@ -38,7 +27,31 @@ export const Publications = () => {
             </Link>
           );
         },
+        disableFilters: true,
       },
+      // {
+      //   Header: 'Source Title',
+      //   accessor: 'sourceTitle', // accessor is the "key" in the data
+      // },
+      // {
+      //   Header: 'Publication Title',
+      //   Cell: ({ row }) => {
+      //     let fullTitle = '';
+      //     if (row.original.title === '') {
+      //       fullTitle = row.original.sourceTitle;
+      //     } else {
+      //       fullTitle = row.original.title;
+      //     }
+      //     return (
+      //       <Link
+      //         className='text-blue-600 hover:text-blue-500'
+      //         to={`/publication/${row.original.id}`}
+      //       >
+      //         {fullTitle}
+      //       </Link>
+      //     );
+      //   },
+      // },
       {
         Header: 'Name',
         Cell: ({ row }) => {
@@ -86,6 +99,11 @@ export const Publications = () => {
 
   return (
     <div class='container mx-auto px-4'>
+      <div className='min-w-0 flex-1'>
+        <h2 className='text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight'>
+          Publications
+        </h2>
+      </div>
       {isLoading && <p>Loading...</p>}
       {publicationsError && <p>{publicationsError}</p>}
       {/* {publications.map((publication, index) => (
