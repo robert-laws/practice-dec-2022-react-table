@@ -2,17 +2,17 @@ import React from 'react';
 
 export const NewPublication = () => {
   return (
-    <div class='container mx-auto px-4 py-4'>
+    <div className='container mx-auto px-4 py-4'>
       <form className='space-y-8 divide-y divide-gray-200'>
         <div className='space-y-8 divide-y divide-gray-200'>
-          <div className='pt-8'>
+          <div className='pt-8 space-y-8 divide-y divide-gray-200'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Author Information
+                Publication Information
               </h3>
               <p className='mt-1 text-sm text-gray-500'>...</p>
             </div>
-            <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
+            <div className='mt-6 pt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
               <div className='sm:col-span-3'>
                 <label
                   htmlFor='first-name'
@@ -51,6 +51,28 @@ export const NewPublication = () => {
 
               <div className='sm:col-span-full'>
                 <label
+                  htmlFor='authors'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Authors
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='authors'
+                    name='authors'
+                    type='text'
+                    autoComplete='authors'
+                    placeholder='ex. Habib, Mohamed; Smith, David'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+                <p className='mt-2 text-sm text-gray-500'>
+                  Separate authors (last name, first name) with a semicolon.
+                </p>
+              </div>
+
+              <div className='sm:col-span-full'>
+                <label
                   htmlFor='title'
                   className='block text-sm font-medium text-gray-700'
                 >
@@ -85,7 +107,7 @@ export const NewPublication = () => {
                 </div>
               </div>
 
-              <div className='sm:col-span-1'>
+              {/* <div className='sm:col-span-1'>
                 <label
                   htmlFor='year'
                   className='block text-sm font-medium text-gray-700'
@@ -105,6 +127,25 @@ export const NewPublication = () => {
                       </option>
                     ))}
                   </select>
+                </div>
+              </div> */}
+
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='year'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Year
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='year'
+                    name='year'
+                    type='text'
+                    autoComplete='year'
+                    placeholder='ex. 2012'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
                 </div>
               </div>
 
@@ -155,7 +196,7 @@ export const NewPublication = () => {
                   <input
                     id='pageStart'
                     name='pageStart'
-                    type='text'
+                    type='number'
                     autoComplete='pageStart'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
@@ -173,7 +214,7 @@ export const NewPublication = () => {
                   <input
                     id='pageEnd'
                     name='pageEnd'
-                    type='text'
+                    type='number'
                     autoComplete='pageEnd'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
@@ -191,7 +232,7 @@ export const NewPublication = () => {
                   <input
                     id='pageCount'
                     name='pageCount'
-                    type='text'
+                    type='number'
                     autoComplete='pageCount'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
@@ -228,6 +269,7 @@ export const NewPublication = () => {
                     type='text'
                     name='link'
                     id='link'
+                    placeholder='https://'
                     autoComplete='address-level2'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
@@ -255,181 +297,247 @@ export const NewPublication = () => {
                 </p>
               </div>
 
-              <div className='sm:col-span-2'>
+              <div className='sm:col-span-full'>
                 <label
-                  htmlFor='postal-code'
+                  htmlFor='authorKeywords'
                   className='block text-sm font-medium text-gray-700'
                 >
-                  ZIP / Postal code
+                  Author Keywords
                 </label>
                 <div className='mt-1'>
                   <input
+                    id='authorKeywords'
+                    name='authorKeywords'
                     type='text'
-                    name='postal-code'
-                    id='postal-code'
-                    autoComplete='postal-code'
+                    autoComplete='authorKeywords'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+                <p className='mt-2 text-sm text-gray-500'>
+                  Separate author keywords with a comma.
+                </p>
+              </div>
+
+              <div className='sm:col-span-full'>
+                <label
+                  htmlFor='indexKeywords'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Index Keywords
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='indexKeywords'
+                    name='indexKeywords'
+                    type='text'
+                    autoComplete='indexKeywords'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+                <p className='mt-2 text-sm text-gray-500'>
+                  Separate index keywords with a comma.
+                </p>
+              </div>
+
+              <div className='sm:col-span-full'>
+                <label
+                  htmlFor='editors'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Editors
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='editors'
+                    name='editors'
+                    type='text'
+                    autoComplete='editors'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+                <p className='mt-2 text-sm text-gray-500'>
+                  Separate editors with a comma.
+                </p>
+              </div>
+
+              <div className='sm:col-span-2'>
+                <label
+                  htmlFor='publisher'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Publisher
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='publisher'
+                    name='publisher'
+                    type='text'
+                    autoComplete='publisher'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div className='pt-8'>
-            <div>
-              <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Notifications
-              </h3>
-              <p className='mt-1 text-sm text-gray-500'>
-                We'll always let you know about important changes, but you pick
-                what else you want to hear about.
-              </p>
-            </div>
-            <div className='mt-6'>
-              <fieldset>
-                <legend className='sr-only'>By Email</legend>
-                <div
-                  className='text-base font-medium text-gray-900'
-                  aria-hidden='true'
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='issn'
+                  className='block text-sm font-medium text-gray-700'
                 >
-                  By Email
+                  ISSN
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='issn'
+                    name='issn'
+                    type='text'
+                    autoComplete='issn'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
                 </div>
-                <div className='mt-4 space-y-4'>
-                  <div className='relative flex items-start'>
-                    <div className='flex h-5 items-center'>
-                      <input
-                        id='comments'
-                        name='comments'
-                        type='checkbox'
-                        className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                      />
-                    </div>
-                    <div className='ml-3 text-sm'>
-                      <label
-                        htmlFor='comments'
-                        className='font-medium text-gray-700'
-                      >
-                        Comments
-                      </label>
-                      <p className='text-gray-500'>
-                        Get notified when someones posts a comment on a posting.
-                      </p>
-                    </div>
-                  </div>
-                  <div className='relative flex items-start'>
-                    <div className='flex h-5 items-center'>
-                      <input
-                        id='candidates'
-                        name='candidates'
-                        type='checkbox'
-                        className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                      />
-                    </div>
-                    <div className='ml-3 text-sm'>
-                      <label
-                        htmlFor='candidates'
-                        className='font-medium text-gray-700'
-                      >
-                        Candidates
-                      </label>
-                      <p className='text-gray-500'>
-                        Get notified when a candidate applies for a job.
-                      </p>
-                    </div>
-                  </div>
-                  <div className='relative flex items-start'>
-                    <div className='flex h-5 items-center'>
-                      <input
-                        id='offers'
-                        name='offers'
-                        type='checkbox'
-                        className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                      />
-                    </div>
-                    <div className='ml-3 text-sm'>
-                      <label
-                        htmlFor='offers'
-                        className='font-medium text-gray-700'
-                      >
-                        Offers
-                      </label>
-                      <p className='text-gray-500'>
-                        Get notified when a candidate accepts or rejects an
-                        offer.
-                      </p>
-                    </div>
-                  </div>
+              </div>
+
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='isbn'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  ISBN
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='isbn'
+                    name='isbn'
+                    type='text'
+                    autoComplete='isbn'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
                 </div>
-              </fieldset>
-              <fieldset className='mt-6'>
-                <legend className='contents text-base font-medium text-gray-900'>
-                  Push Notifications
-                </legend>
-                <p className='text-sm text-gray-500'>
-                  These are delivered via SMS to your mobile phone.
+              </div>
+
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='eid'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  EID
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='eid'
+                    name='eid'
+                    type='text'
+                    autoComplete='eid'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='callNumber'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Call Number
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='callNumber'
+                    name='callNumber'
+                    type='text'
+                    autoComplete='callNumber'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='sustainableDevelopmentGoals'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Sustainable Development Goals
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='sustainableDevelopmentGoals'
+                    name='sustainableDevelopmentGoals'
+                    type='text'
+                    autoComplete='sustainableDevelopmentGoals'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+                <p className='mt-2 text-sm text-gray-500'>
+                  Separate sustainable development goals with a comma.
                 </p>
-                <div className='mt-4 space-y-4'>
-                  <div className='flex items-center'>
-                    <input
-                      id='push-everything'
-                      name='push-notifications'
-                      type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                    />
-                    <label
-                      htmlFor='push-everything'
-                      className='ml-3 block text-sm font-medium text-gray-700'
-                    >
-                      Everything
-                    </label>
-                  </div>
-                  <div className='flex items-center'>
-                    <input
-                      id='push-email'
-                      name='push-notifications'
-                      type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                    />
-                    <label
-                      htmlFor='push-email'
-                      className='ml-3 block text-sm font-medium text-gray-700'
-                    >
-                      Same as email
-                    </label>
-                  </div>
-                  <div className='flex items-center'>
-                    <input
-                      id='push-nothing'
-                      name='push-notifications'
-                      type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500'
-                    />
-                    <label
-                      htmlFor='push-nothing'
-                      className='ml-3 block text-sm font-medium text-gray-700'
-                    >
-                      No push notifications
-                    </label>
-                  </div>
+              </div>
+
+              <div className='sm:col-span-1'>
+                <label
+                  htmlFor='cirsSponsored'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  CIRS Sponsored
+                </label>
+                <div className='mt-1'>
+                  <select
+                    id='cirsSponsored'
+                    name='cirsSponsored'
+                    autoComplete='cirsSponsored'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  >
+                    <option key='Yes' value='Yes'>
+                      Yes
+                    </option>
+                    <option key='No' value='No'>
+                      No
+                    </option>
+                  </select>
                 </div>
-              </fieldset>
+              </div>
+
+              <div className='sm:col-span-2'>
+                <label
+                  htmlFor='fullText'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Full Text File Upload
+                </label>
+                <div className='mt-1 flex items-center'>
+                  <div className='mt-1'>
+                    <input
+                      id='fullText'
+                      name='fullText'
+                      type='text'
+                      autoComplete='fullText'
+                      disabled
+                      className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-slate-50'
+                    />
+                  </div>
+                  <button
+                    type='button'
+                    className='ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className='pt-5'>
-          <div className='flex justify-end'>
+          <div className='flex justify-start'>
+            <button
+              type='submit'
+              className='mr-3 inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+            >
+              Save New Publication
+            </button>
             <button
               type='button'
               className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
             >
               Cancel
-            </button>
-            <button
-              type='submit'
-              className='ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-            >
-              Save
             </button>
           </div>
         </div>
